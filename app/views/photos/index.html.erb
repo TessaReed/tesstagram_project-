@@ -1,0 +1,24 @@
+
+<% @photos.reverse.each do |photo| %>
+  <div class="card">
+    <%= image_tag photo.image_url, class: 'card-img-top', width: '40px' %>
+    <div class="card-block">
+      <p class="card-text"><%= photo.caption %> </p>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary"> <%= link_to image_tag('comments.png', class: "heart"), photo_comments_path(photo) %></button>
+        <button type="button" class="btn btn-primary"><%= link_to like_photo_path(photo), method: :put do %>
+            <%= image_tag('heart.png', class: "heart") %>
+          <%= photo.get_upvotes.size %>
+          <% end %></button>
+        <button type="button" class="btn btn-primary"><%= link_to dislike_photo_path(photo), method: :put do %>
+            <%= image_tag('downvote.png', class: "heart") %>
+          <%= photo.get_downvotes.size %>
+        <% end %></button>
+      </div>
+      <% @comments = photo.comments %>
+        <% @comments.each do |comment| %>
+            <p><%= comment.content %><p>
+        <% end %>
+      <% end %>
+    </div>
+</div>

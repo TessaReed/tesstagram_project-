@@ -1,0 +1,27 @@
+<h1>Comments Page</h1>
+
+<%= image_tag @photo.image_url %>
+<!-- create a loop for all the comments -->
+
+<% @comments.each do |comment| %>
+<div class="card">
+  <div class="card-block">
+  <p><%= comment.content %></p>
+</div>
+</div>
+<%end%>
+
+
+<!-- then you need to create a form to upload new comments -->
+<!-- form width creates  -->
+
+<%= form_with(model: [@photo, @new_comment], local: true) do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content, class: 'form-control' %>
+
+
+<div class="action form-group">
+  <%= form.submit class: 'btn btn-secondary' %>
+</div>
+
+<%end %>

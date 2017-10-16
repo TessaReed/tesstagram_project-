@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <div class="card-block">
+    <p>
+      <%= image_tag @photo.image_url, width: '100px' %>
+    </p>
+    <p>
+      <strong><%= @photo.user.email %></strong>
+      <%= @photo.caption %>
+    </p>
+    <%= link_to 'Comments', photo_comments_path(@photo), class: 'btn btn-primary' %>
+    <% if current_user == @photo.user %>
+      <%= link_to 'Edit', edit_photo_path(@photo) %> ·
+      <%= link_to 'Destroy', @photo, method: :delete, data: { confirm: 'Are you sure?' } %> ·
+    <% end %>
+    <%= link_to 'Back', photos_path %>
+</div>
+</div>
